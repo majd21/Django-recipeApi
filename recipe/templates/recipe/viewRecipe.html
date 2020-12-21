@@ -1,0 +1,27 @@
+
+{% extends 'recipe/base.html' %}
+
+{% block content %}
+<h2>{{recipe.title}}</h2>
+<img src="{{recipe.image.url}}" alt="">
+<small>{{recipe.time}}</small>
+<h3>{{recipe.items}}</h3>
+<p>{{recipe.body}}</p>
+
+<p>{{error}}</p>
+<form method="POST" >
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Add Comment</button>
+</form>
+
+<ul>
+{% for comment in recipe.comments.all %}
+<li>
+    <h4>{{comment.name}}</h4>
+    <small>{{comment.time}}</small>
+    <p>{{comment.body}}</p>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

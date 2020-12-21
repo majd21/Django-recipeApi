@@ -1,0 +1,19 @@
+{% extends 'recipe/base.html' %}
+
+{% block content %}
+
+current
+
+{% for recipe in recipes %}
+
+<div>
+    <a href="{% url 'viewRecipe' recipe.id %}">
+        <h2>{{recipe.title}}</h2>
+    </a>
+    <img src="{{recipe.image.url}}" alt="{{recipe.title}}">
+    <small>{{recipe.time}}</small>
+</div>
+
+{% endfor %}
+
+{% endblock %}

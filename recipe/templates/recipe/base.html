@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+</head>
+<body>
+    
+    {% if user.is_authenticated %}
+
+    Logged In as {{user.username}}
+
+    <a href="{% url 'create' %}">Create</a>
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    {% else %}
+
+    <a href="{%url 'signup'%}">Sign Up</a>
+    <a href="{%url 'login'%}">Login</a>
+
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>
